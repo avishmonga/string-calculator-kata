@@ -79,3 +79,19 @@ describe('add method with custom delimiters of any length', () => {
     );
   });
 });
+
+describe('add method with multiple delimiters', () => {
+  test('should handle multiple custom delimiters', () => {
+    expect(add('//[*][%]\n1*2%3')).toBe(6);
+  });
+
+  test('should handle multiple custom delimiters with special characters', () => {
+    expect(add('//[###][@@]\n4###5@@6')).toBe(15);
+  });
+
+  test('should throw error for negative numbers with multiple delimiters', () => {
+    expect(() => add('//[*][%]\n1*2%-3')).toThrow(
+      'negative numbers not allowed: -3'
+    );
+  });
+});
