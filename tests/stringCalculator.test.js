@@ -45,3 +45,21 @@ describe('add method with negative numbers', () => {
     );
   });
 });
+
+describe('add method with numbers greater than 1000', () => {
+  test('should ignore numbers greater than 1000', () => {
+    expect(add('2,1001')).toBe(2);
+  });
+
+  test('should include numbers less than or equal to 1000', () => {
+    expect(add('2,1000')).toBe(1002);
+  });
+
+  test('should handle mixed cases with custom delimiters', () => {
+    expect(add('//;\n2;1001;3')).toBe(5);
+  });
+
+  test('should handle only numbers greater than 1000', () => {
+    expect(add('1001,1002')).toBe(0);
+  });
+});
