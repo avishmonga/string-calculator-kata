@@ -33,3 +33,15 @@ describe('add method with custom delimiters', () => {
     expect(add('//|\n1|2|3')).toBe(6);
   });
 });
+
+describe('add method with negative numbers', () => {
+  test('should throw an error for a single negative number', () => {
+    expect(() => add('1,-2,3')).toThrow('negative numbers not allowed: -2');
+  });
+
+  test('should throw an error for multiple negative numbers', () => {
+    expect(() => add('-1,-2,3')).toThrow(
+      'negative numbers not allowed: -1, -2'
+    );
+  });
+});
