@@ -19,3 +19,17 @@ test('should return the sum of any amount of numbers', () => {
 test('should return the sum of numbers with newlines as delimiters', () => {
   expect(add('1\n2,3')).toBe(6);
 });
+
+describe('add method with custom delimiters', () => {
+  test('should return the sum with default delimiter', () => {
+    expect(add('1,2')).toBe(3);
+  });
+
+  test('should return the sum with custom delimiter ";"', () => {
+    expect(add('//;\n1;2')).toBe(3);
+  });
+
+  test('should return the sum with custom delimiter "|"', () => {
+    expect(add('//|\n1|2|3')).toBe(6);
+  });
+});
