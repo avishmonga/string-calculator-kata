@@ -63,3 +63,19 @@ describe('add method with numbers greater than 1000', () => {
     expect(add('1001,1002')).toBe(0);
   });
 });
+
+describe('add method with custom delimiters of any length', () => {
+  test('should handle custom delimiter of any length', () => {
+    expect(add('//[***]\n1***2***3')).toBe(6);
+  });
+
+  test('should handle custom delimiter with special characters', () => {
+    expect(add('//[###]\n4###5###6')).toBe(15);
+  });
+
+  test('should throw error for negative numbers with custom delimiter', () => {
+    expect(() => add('//[---]\n1---2----3')).toThrow(
+      'negative numbers not allowed: -3'
+    );
+  });
+});
